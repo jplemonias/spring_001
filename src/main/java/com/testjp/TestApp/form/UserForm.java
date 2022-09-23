@@ -1,26 +1,11 @@
-package com.testjp.TestApp.model;
+package com.testjp.TestApp.form;
 
-public class User {
+public class UserForm {
+
     private int id;
     private String name;
     private String championType;
     private int hp;
-    
-
-    public User(){
-        this("Default Name");
-    }
-    
-    public User(String name){
-        this(5, name, "Wawa", 10);
-    }
-
-    public User(int id, String name, String championType, int hp){
-        this.id = id;
-        this.name = name;
-        this.championType = championType;
-        this.hp = hp;
-    }
   
     public int getId()
     {
@@ -57,12 +42,5 @@ public class User {
     public void setHp(int hp)
     {
       this.hp = hp;
-    }
-
-    @Override
-    public String toString() {
-        return "Le/La champion.ne s'appel " + name +
-          ", avec " + hp + "points de vie " +
-          "et est un.e "+ championType;
     }
 }

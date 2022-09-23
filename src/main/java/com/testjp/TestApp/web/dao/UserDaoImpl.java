@@ -1,5 +1,6 @@
 package com.testjp.TestApp.web.dao;
 
+import com.testjp.TestApp.form.UserForm;
 import com.testjp.TestApp.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -36,5 +37,21 @@ public class UserDaoImpl implements UserDao {
     public User save(User user) {
         users.add(user);
         return user;
+    }
+ 
+    @Override
+    public User deleteUser(int id) {
+        User isRemoved = users.remove(id);
+        return isRemoved;
+    }
+ 
+    @Override
+    public List<User> editUser(User user, UserForm UserForm) {
+        user.setId(UserForm.getId());
+        user.setName(UserForm.getName());
+        user.setChampionType(UserForm.getChampionType());
+        user.setHp(UserForm.getHp());
+        // users.set( idList, new User(idList, name, type, hp) );
+        return users;
     }
 }
