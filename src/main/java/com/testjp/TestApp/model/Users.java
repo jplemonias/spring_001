@@ -2,28 +2,29 @@ package com.testjp.TestApp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+// import javax.persistence.GeneratedValue;
 
 @Entity
-public class User {
+public class Users {
     @Id
     private int id;
     private String name;
-    private String championType;
+    private String champion;
     private int hp;
     
 
-    public User(){
+    public Users(){
         this("Default Name");
     }
     
-    public User(String name){
+    public Users(String name){
         this(5, name, "Wawa", 10);
     }
 
-    public User(int id, String name, String championType, int hp){
+    public Users(int id, String name, String champion, int hp){
         this.id = id;
         this.name = name;
-        this.championType = championType;
+        this.champion = champion;
         this.hp = hp;
     }
   
@@ -45,13 +46,13 @@ public class User {
       this.name = name;
     }
   
-    public String getChampionType()
+    public String getchampion()
     {
-      return championType;
+      return champion;
     }
-    public void setChampionType(String championType)
+    public void setchampion(String champion)
     {
-      this.championType = championType;
+      this.champion = champion;
     }
   
     public int getHp()
@@ -68,6 +69,6 @@ public class User {
     public String toString() {
         return "Le/La champion.ne s'appel " + name +
           ", avec " + hp + "points de vie " +
-          "et est un.e "+ championType;
+          "et est un.e "+ champion;
     }
 }
