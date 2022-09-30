@@ -1,8 +1,8 @@
-INSERT INTO users (`id`, `name`, `champion`, `hp`)
-VALUES(1, 'Allan' , 'n00b', 120);
+INSERT INTO users (`name`, `champion`, `hp`)
+VALUES('Allan' , 'n00b', 120);
 
-INSERT INTO users (`id`, `name`, `champion`, `hp`)
-VALUES(2, 'Mush' , 'Mush', 200);
+INSERT INTO users (`name`, `champion`, `hp`)
+VALUES('Mush' , 'Mush', 200);
 
-INSERT INTO users (`id`, `name`, `champion`, `hp`)
-VALUES(3, 'Estelle' , 'Du hast', 400);
+INSERT INTO users (`name`, `champion`, `hp`)
+VALUES('Estelle' , 'Du hast', 400);

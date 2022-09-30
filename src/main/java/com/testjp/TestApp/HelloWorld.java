@@ -8,7 +8,7 @@ public class HelloWorld {
 
     @RequestMapping("/")
     public String index(){
-        return "<h1>Hello World</h1>";
+        return "<h1>API bien chargée !!!</h1>";
     }
 
 

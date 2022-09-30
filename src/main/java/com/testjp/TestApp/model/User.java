@@ -1,27 +1,29 @@
 package com.testjp.TestApp.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
 
-@Entity
-public class Users {
-    @Id
+@Entity @Table (name = "users")
+public class User {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String champion;
     private int hp;
     
 
-    public Users(){
+    public User(){
         this("Default Name");
     }
     
-    public Users(String name){
+    public User(String name){
         this(5, name, "Wawa", 10);
     }
 
-    public Users(int id, String name, String champion, int hp){
+    public User(int id, String name, String champion, int hp){
         this.id = id;
         this.name = name;
         this.champion = champion;

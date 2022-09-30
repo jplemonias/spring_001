@@ -5,11 +5,16 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.testjp.TestApp.form.UserForm;
-import com.testjp.TestApp.model.Users;
+import com.testjp.TestApp.model.User;
 import com.testjp.TestApp.web.dao.UserDao;
 import com.testjp.TestApp.web.exceptions.*;
 
+import io.swagger.annotations.Api;
+import io.swagger.v3.oas.models.media.MediaType;
+
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +25,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -28,6 +32,7 @@ import java.util.List;
 
 @RequestMapping("/users")
 
+@Api("API CRUD personnages.")
 public class UserController {
 
     private final UserDao userDoa;
@@ -38,19 +43,38 @@ public class UserController {
 
 	//Récupérer la liste des users
 	@GetMapping
-	public MappingJacksonValue listUsers() {
-		List<Users> users = userDoa.findAll();
-		MappingJacksonValue userList = new MappingJacksonValue(users);
-		return userList;
+	public List<User> listUsers() {
+		return userDoa.findAll();
 	}
 
 	@GetMapping(value = { "/{id}" })
-	public Users displayAUser(@PathVariable int id) {
-		Users user = userDoa.findById(id);
+	public User displayAUser(@PathVariable int id) {
+		User user = userDoa.findById(id);
         if (user==null) {
 			throw new UserNotFound("User can not be found.");
 		}
         return user;
+	}
+
+    //Ajouter un personnage
+    @PostMapping(value = "/add")
+    public User saveUser(@ModelAttribute  User user) {
+        return userDoa.save(user);
+    }
+	
+    //Supprimer un personnage
+	@DeleteMapping(value = { "/delete/{id}" })
+	public User deletUser(@PathVariable int id) {
+		User user = userDoa.findById(id);
+		userDoa.delete(user);
+		return user;
+	}
+
+    //Editer un personnage
+	@PutMapping(value = { "/edit/{idUser}" })
+	public User editUser(@ModelAttribute  User user) {
+		userDoa.save(user);
+		return user;
 	}
 
 	// @GetMapping
